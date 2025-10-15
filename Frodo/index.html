@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>โครงการอบรมเทคโนโลยีดิจิทัลเพื่อการศึกษา - หน้าหลัก (Halloween)</title>
+
+<style>
+  /* ===== Halloween Design Tokens ===== */
+  :root{
+    --bg:#0b0a12;           /* ดำม่วงกลางคืน */
+    --panel:#131225;        /* แผงเข้ม */
+    --ink:#e8e9ff;          /* ตัวอักษรหลัก */
+    --muted:#b4b7d4;        /* อักษรรอง */
+    --orange:#ff7a18;       /* ส้มฮาโลวีน */
+    --purple:#6d28d9;       /* ม่วงเรือง */
+    --neon:#39ff14;         /* เขียวเรือง */
+    --line:#26243f;         /* เส้นคั่น */
+    --radius:16px; 
+    --shadow:0 12px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(109,40,217,.25), transparent),
+      radial-gradient(1000px 500px at 110% 10%, rgba(57,255,20,.06), transparent),
+      var(--bg);
+    font-family: "Noto Sans Thai", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height:1.7;
+  }
+  a{color:inherit; text-decoration:none}
+  .container{width:min(1100px,92%); margin-inline:auto}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:#0f0e1dcc; backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  header h1{
+    margin:0; padding:1rem 0; text-align:center; font-weight:800; letter-spacing:.2px;
+  }
+
+  /* ===== Nav ===== */
+  nav{ background:#0f0e1d; border-bottom:1px solid var(--line) }
+  nav ul{
+    display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
+    margin:0; padding:.6rem; list-style:none;
+  }
+  nav a{
+    display:inline-block; color:#cfd3ff; border:1px solid var(--line);
+    padding:.55rem 1rem; border-radius:999px; font-weight:700;
+  }
+  nav a:hover{ border-color:#4b3c88; box-shadow:0 0 0 2px rgba(109,40,217,.30) inset }
+  /* ทำให้ลิงก์หน้าปัจจุบันเด่นขึ้น (ถ้าเปิดไฟล์นี้ชื่อ index.html) */
+  nav a[href="index.html"]{ background:linear-gradient(180deg,var(--purple),#4c1d95); color:#fff }
+
+  /* ===== Hero ===== */
+  .hero{ position:relative; overflow:hidden }
+  .hero .wrap{ display:grid; place-items:center; text-align:center; padding:2.2rem 0 2.6rem }
+  .hero img{
+    width:min(920px,95%); height:auto;
+    border-radius:var(--radius); border:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  .hero p{ max-width:860px; margin:.8rem auto 0; color:#d8dbff }
+
+  /* ค้างคาวบินเบา ๆ */
+  .bat{ position:absolute; inset:0; pointer-events:none }
+  .bat span{
+    position:absolute; width:24px; height:12px;
+    background:linear-gradient(90deg,#000,#222);
+    border-radius:12px 12px 2px 2px; opacity:.6;
+    filter:drop-shadow(0 0 6px rgba(255,122,24,.2));
+  }
+  .bat span::before, .bat span::after{
+    content:""; position:absolute; top:-6px; width:14px; height:14px;
+    border-top:10px solid #111;
+    border-left:10px solid transparent; border-right:10px solid transparent;
+    border-bottom:none; border-radius:2px;
+  }
+  .bat span::before{ left:-12px; transform:rotate(-10deg) }
+  .bat span::after{ right:-12px; transform:rotate(10deg) }
+  .bat span:nth-child(1){ left:10%; top:10%; animation:fly 9s linear infinite }
+  .bat span:nth-child(2){ left:24%; top:22%; animation:fly 11s linear infinite reverse }
+  .bat span:nth-child(3){ left:72%; top:16%; animation:fly 10s linear infinite }
+  @keyframes fly{
+    0%{transform:translate(0,0)} 
+    50%{transform:translate(30px,10px)} 
+    100%{transform:translate(0,0)}
+  }
+
+  /* ===== CTA buttons (ถ้าต้องการเพิ่มในอนาคต) ===== */
+  .cta{ display:flex; gap:.6rem; justify-content:center; margin-top:1rem }
+  .btn{
+    display:inline-block; border:none; outline:none; cursor:pointer;
+    padding:.85rem 1.1rem; border-radius:12px; font-weight:800;
+  }
+  .btn-primary{ background:linear-gradient(180deg,var(--orange),#d44e00); color:#1a0f08 }
+  .btn-ghost{ color:#d1d5ff; border:1px solid #3a365e; background:#14122a }
+
+  /* ===== Footer ===== */
+  footer{ border-top:1px solid var(--line); background:#0f0e1d; color:#c0c2dd }
+  footer p{ margin:0; padding:1rem; text-align:center }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px){
+    header h1{ padding:.9rem 0 }
+    .hero .wrap{ padding:1.6rem 0 2rem }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>โครงการอบรมเทคโนโลยีดิจิทัลเพื่อการศึกษา  Edition</h1>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html" aria-current="page">หน้าหลัก</a></li>
+    <li><a href="schedule.html">กำหนดการ</a></li>
+    <li><a href="registration.html">ลงทะเบียน</a></li>
+    <li><a href="payment.html">แจ้งชำระเงิน</a></li>
+    <li><a href="contact.html">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="hero">
+    <!-- ค้างคาวบิน -->
+    <div class="bat" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="wrap container">
+      <img src="images/ai.jpg" alt="โปสเตอร์การอบรม (วางไฟล์ ai.jpg ในโฟลเดอร์ images)">
+      <p>ขอเชิญเข้าร่วมอบรมเชิงปฏิบัติการ “เทคโนโลยีดิจิทัลเพื่อการศึกษา” ในโทนฮาโลวีนสุดเท่ — สนุก น่าค้นหา และได้สกิลจริง</p>
+      <!-- ถ้าต้องการปุ่มเรียกดูเพิ่มในภายหลัง
+      <div class="cta">
+        <a class="btn btn-primary" href="registration.html">ลงทะเบียนเลย</a>
+        <a class="btn btn-ghost" href="schedule.html">ดูตารางอบรม</a>
+      </div>
+      -->
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 ITEC3378 - การเขียนโปรแกรมบนเว็บเพื่อการศึกษา BY  : JOSH</p>
+</footer>
+</body>
+</html>

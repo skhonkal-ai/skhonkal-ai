@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ติดต่อสอบถาม (Halloween)</title>
+
+<style>
+  /* ===== Halloween Tokens ===== */
+  :root{
+    --bg:#0b0a12; --panel:#131225; --ink:#e8e9ff; --muted:#b4b7d4;
+    --orange:#ff7a18; --purple:#6d28d9; --neon:#39ff14; --line:#26243f;
+    --radius:16px; --shadow:0 12px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(109,40,217,.25), transparent),
+      radial-gradient(1000px 500px at 110% 10%, rgba(57,255,20,.06), transparent),
+      var(--bg);
+    font-family:"Noto Sans Thai", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height:1.7;
+  }
+  a{color:inherit; text-decoration:none}
+  .container{width:min(1100px,92%); margin-inline:auto}
+
+  /* ===== Header ===== */
+  header{position:sticky; top:0; z-index:20; background:#0f0e1dcc; backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  header h1{margin:0; padding:1rem 0; text-align:center; font-weight:800}
+
+  /* ===== Nav ===== */
+  nav{background:#0f0e1d; border-bottom:1px solid var(--line)}
+  nav ul{display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap; margin:0; padding:.6rem; list-style:none}
+  nav a{display:inline-block; color:#cfd3ff; border:1px solid var(--line); padding:.55rem 1rem; border-radius:999px; font-weight:700}
+  nav a:hover{border-color:#4b3c88; box-shadow:0 0 0 2px rgba(109,40,217,.3) inset}
+  nav a[href="contact.html"]{background:linear-gradient(180deg,var(--purple),#4c1d95); color:#fff}
+
+  /* ===== Web corners (ตกแต่งใยแมงมุม) ===== */
+  .web{
+    position:relative; isolation:isolate;
+  }
+  .web::before, .web::after{
+    content:""; position:absolute; width:220px; height:220px; pointer-events:none; opacity:.22;
+    background:
+      conic-gradient(from 0deg at 50% 50%, transparent 0 10deg, #ffffff22 10deg 11deg, transparent 11deg 360deg);
+    filter:drop-shadow(0 0 6px rgba(255,255,255,.05));
+  }
+  .web::before{top:-30px; left:-30px; transform:rotate(25deg)}
+  .web::after{bottom:-30px; right:-30px; transform:rotate(-20deg)}
+
+  /* ===== Contact Box ===== */
+  main{padding:1.8rem 0}
+  .contact-box{
+    background:linear-gradient(180deg,#151430,#0f0e22);
+    border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:1.2rem; max-width:720px; margin-inline:auto; position:relative;
+  }
+  .contact-box h2{margin:.2rem 0 1rem; color:var(--orange); font-size:1.35rem}
+  .contact-box p{margin:.4rem 0; color:#dfe2ff}
+  .label{color:#ffb78a}
+  #current-time{color:#c9c9ff}
+
+  /* ===== Pumpkin badge ===== */
+  .pumpkin{
+    position:absolute; top:-16px; right:-16px; width:56px; height:56px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #ffd7b0, #ff7a18 55%, #b24a00 100%);
+    box-shadow:0 6px 18px rgba(0,0,0,.35), inset 0 -6px 10px rgba(0,0,0,.25);
+    border:2px solid #7a2f00;
+  }
+  .pumpkin::before{content:""; position:absolute; top:-10px; left:22px; width:10px; height:14px; background:#2f6a21; border-radius:3px}
+  .pumpkin::after{content:"🎃"; position:absolute; inset:0; display:grid; place-items:center; font-size:26px; filter:drop-shadow(0 1px 2px #0006)}
+
+  /* ===== Footer ===== */
+  footer{border-top:1px solid var(--line); background:#0f0e1d; color:#c0c2dd}
+  footer p{margin:0; padding:1rem; text-align:center}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px){
+    header h1{padding:.9rem 0}
+    .contact-box{margin-inline:clamp(.8rem, 4vw, 1rem)}
+  }
+</style>
+</head>
+<body>
+<header><h1>ติดต่อสอบถาม</h1></header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">หน้าหลัก</a></li>
+    <li><a href="schedule.html">กำหนดการ</a></li>
+    <li><a href="registration.html">ลงทะเบียน</a></li>
+    <li><a href="payment.html">แจ้งชำระเงิน</a></li>
+    <li><a href="contact.html" aria-current="page">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="container web">
+    <div class="contact-box">
+      <div class="pumpkin" aria-hidden="true"></div>
+      <h2>ช่องทางการติดต่อ</h2>
+      <p><span class="label"><strong>ผู้ประสานงาน:</strong></span> KROJOSH</p>
+      <p><span class="label"><strong>โทร:</strong></span> 088-626-8791</p>
+      <p><span class="label"><strong>อีเมล:</strong></span> 6611504645@chandra.ac.th</p>
+      <p id="current-time" aria-live="polite"></p>
+    </div>
+  </div>
+</main>
+
+<script>
+  (function(){
+    var el = document.getElementById('current-time');
+    if(!el) return;
+    try{
+      var now = new Date();
+      el.textContent = 'เวลาปัจจุบัน: ' + new Intl.DateTimeFormat(
+        'th-TH', {dateStyle:'full', timeStyle:'medium', timeZone:'Asia/Bangkok'}
+      ).format(now);
+    }catch(e){
+      el.textContent = 'เวลาปัจจุบัน: ' + new Date().toLocaleString();
+    }
+  })();
+</script>
+
+<footer><p>© 2025 ITEC3378 — BY  : JOSH</p></footer>
+</body>
+</html>

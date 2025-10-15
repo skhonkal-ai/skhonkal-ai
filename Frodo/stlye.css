@@ -1,0 +1,200 @@
+/* ==========================================================================
+   HALLOWEEN THEME — BRIGHT & ACCESSIBLE (for your existing HTML)
+   Works with:
+   - <header><h1>…</h1></header>
+   - <nav><ul><li><a>…</a></li>…</ul></nav>
+   - <main><section class="hero"><img> <p>…</p></section></main>
+   - <footer><p>…</p></footer>
+   Goals: high readability, consistent spacing, subtle festive animations
+   ========================================================================== */
+
+/* ---------- Base Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body,h1,h2,h3,p,ul{margin:0}
+img{max-width:100%;display:block}
+ul{padding-left:0;list-style:none}
+a{text-decoration:none}
+
+/* ---------- Theme Tokens ---------- */
+:root{
+  /* Palette (light Halloween) */
+  --bg: #fff8ef;            /* warm light background */
+  --bg-accent: #ffe9d1;     /* soft peach */
+  --surface: #ffffff;       /* cards / hero */
+  --ink: #1f140e;           /* main text (high contrast) */
+  --muted: #5c4a40;         /* secondary text */
+
+  --pumpkin: #ff7a2e;       /* brand accent */
+  --amber:   #ffb24d;       /* warm accent */
+  --violet:  #7b61ff;       /* playful accent */
+  --leaf:    #35c27a;       /* small green accent */
+
+  --border: #eaded2;
+  --radius: 18px;
+  --shadow-sm: 0 2px 6px rgba(31,20,14,.06);
+  --shadow:   0 12px 28px rgba(31,20,14,.10);
+
+  --container: 1100px;
+}
+
+/* ---------- Typography & Body ---------- */
+body{
+  font-family:"Noto Sans Thai", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(900px 600px at 12% -10%, rgba(255,213,153,.5), transparent 60%),
+    radial-gradient(900px 650px at 110% 0%, rgba(255,190,170,.35), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg-accent));
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* Soft confetti specks */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.4;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(0,0,0,.12), transparent 52%),
+    radial-gradient(1.5px 1.5px at 28% 40%, rgba(0,0,0,.08), transparent 54%),
+    radial-gradient(1px 1px at 70% 18%, rgba(0,0,0,.1), transparent 54%),
+    radial-gradient(1.5px 1.5px at 85% 62%, rgba(0,0,0,.07), transparent 54%),
+    radial-gradient(1px 1px at 40% 80%, rgba(0,0,0,.09), transparent 54%);
+}
+
+/* ---------- Layout Container ---------- */
+.container{max-width:var(--container); margin:0 auto; padding:16px}
+
+/* ---------- Header ---------- */
+header{
+  position:sticky; top:0; z-index:10; backdrop-filter: blur(8px);
+  background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.66));
+  border-bottom:1px solid var(--border);
+}
+header h1{
+  max-width:var(--container); margin:12px auto; padding:8px 16px;
+  font-size:clamp(22px,2.4vw + 12px,40px); font-weight:900; letter-spacing:.3px;
+  background:linear-gradient(90deg, var(--pumpkin), var(--amber) 35%, var(--violet));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 1px 0 rgba(255,255,255,.95);
+}
+
+/* Subtle bats behind header (decor only) */
+header::after{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:-1; opacity:.18;
+  background:
+    radial-gradient(120px 50px at 15% 30%, rgba(0,0,0,.18), transparent 60%),
+    radial-gradient(120px 50px at 85% 35%, rgba(0,0,0,.18), transparent 60%);
+}
+
+/* ---------- Navigation ---------- */
+nav{border-top:1px solid var(--border); background:transparent}
+nav ul{
+  max-width:var(--container); margin:0 auto; padding:12px 16px;
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+}
+nav a{
+  display:inline-block; padding:10px 16px; border-radius:999px;
+  color:var(--ink); background:var(--surface); border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+}
+nav a:hover{ transform:translateY(-2px); background:#fff7ef; border-color:#f3d7bd; box-shadow:0 14px 30px rgba(255,122,46,.18) }
+nav a[aria-current="page"], nav a.active{
+  background:linear-gradient(180deg, #ffe7c8, #ffd8a3);
+  border-color:#f5c98a;
+}
+
+/* ---------- Main ---------- */
+main{ position:relative; z-index:1 }
+main > .hero{
+  max-width:var(--container); margin:24px auto; padding:18px;
+  display:grid; gap:18px; grid-template-columns:1fr;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow); position:relative; overflow:hidden;
+}
+@media (min-width:860px){ main > .hero{ grid-template-columns:1.1fr .9fr; padding:22px } }
+
+.hero img{
+  border-radius:14px; border:1px solid var(--border); box-shadow:var(--shadow-sm)
+}
+.hero p{
+  align-self:center; color:var(--muted); font-size:clamp(15px, .7vw + 14px, 18px)
+}
+
+/* Optional CTA buttons if added in HTML later */
+.hero .cta{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+.btn{
+  display:inline-block; font-weight:800; padding:12px 18px; border-radius:14px;
+  background:linear-gradient(180deg, #ffd37a, var(--pumpkin)); color:#3a210f; border:1px solid #e68a3a;
+  box-shadow:0 10px 24px rgba(255,138,42,.28);
+  transition:transform .15s ease, box-shadow .15s ease
+}
+.btn:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(255,138,42,.36) }
+.btn-ghost{
+  background:#fff; color:var(--ink); border:1px solid var(--border); box-shadow:var(--shadow-sm)
+}
+.btn-ghost:hover{ background:#fff2e1 }
+
+/* Floating ghost & pumpkin (subtle, does not block text) */
+main > .hero::before,
+main > .hero::after{
+  content:""; position:absolute; width:84px; height:84px; pointer-events:none; z-index:0; opacity:.9;
+  background-size:contain; background-repeat:no-repeat; filter:drop-shadow(0 10px 14px rgba(0,0,0,.10));
+  animation: floatY var(--dur, 12s) ease-in-out infinite;
+}
+main > .hero::before{
+  left:-56px; top:-34px; --dur:11s;
+  background-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'>\
+    <defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>\
+      <stop offset='0' stop-color='white'/>\
+      <stop offset='1' stop-color='%23fff2d9'/>\
+    </linearGradient></defs>\
+    <path d='M15 50c0-18 10-32 25-32s25 14 25 32v18c0 4-4 6-8 4l-6-3-6 3-6-3-6 3c-4 2-8 0-8-4V50z' fill='url(%23g)' stroke='%23e4d8c5'/>\
+    <circle cx='35' cy='38' r='4' fill='%232b1a10'/>\
+    <circle cx='49' cy='38' r='4' fill='%232b1a10'/>\
+  </svg>");
+}
+main > .hero::after{
+  right:-50px; bottom:-28px; --dur:13s;
+  background-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'>\
+    <path d='M20 48c0-12 10-22 20-22s20 10 20 22-9 18-20 18-20-6-20-18z' fill='%23ff8a2a' stroke='%23e67d24'/>\
+    <path d='M40 24c-2-8 6-10 8-16 4 10-3 12-8 16z' fill='%2335c27a'/>\
+    <path d='M32 38c2-3 6-3 8 0 2-3 6-3 8 0' fill='none' stroke='%231f140e' stroke-width='2' stroke-linecap='round'/>\
+    <circle cx='34' cy='46' r='3' fill='%231f140e'/>\
+    <circle cx='46' cy='46' r='3' fill='%231f140e'/>\
+  </svg>");
+}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-10px) rotate(2deg)}}
+
+/* Web corner (spider web) inside hero */
+main > .hero .web-corner{
+  content:""; position:absolute; right:10px; top:10px; width:120px; height:120px; opacity:.22; pointer-events:none;
+  background:
+    conic-gradient(from 0deg at 0 0, transparent 0 6deg, #00000014 6deg 7deg, transparent 7deg 13deg, #00000012 13deg 14deg, transparent 14deg 20deg, #00000010 20deg 21deg, transparent 21deg),
+    conic-gradient(from 0deg at 0 0, transparent 0 16deg, #00000014 16deg 17deg, transparent 17deg 27deg, #00000012 27deg 28deg, transparent 28deg 38deg, #00000010 38deg 39deg, transparent 39deg);
+  mask: radial-gradient(140px 140px at 0 0, black 55%, transparent 56%);
+}
+
+/* ---------- Footer ---------- */
+footer{
+  margin-top:28px; border-top:1px solid var(--border);
+  background:rgba(255,255,255,.75)
+}
+footer p{
+  max-width:var(--container); margin:12px auto; padding:0 16px; color:var(--muted)
+}
+
+/* ---------- Focus visible for accessibility ---------- */
+:focus-visible{ outline:3px solid #94d8ff; outline-offset:2px; border-radius:6px }
+
+/* ---------- Utilities ---------- */
+.stack-sm>*+*{margin-top:8px}
+.stack>*+*{margin-top:12px}
+.stack-lg>*+*{margin-top:16px}
+
+/* ---------- Optional: mark current page link without editing HTML ----------
+   Example: on index.html, add this rule to highlight "หน้าหลัก"
+----------------------------------------------------------------------------- */
+/* nav a[href$="index.html"]{ background:linear-gradient(180deg,#ffe7c8,#ffd8a3); border-color:#f5c98a } */

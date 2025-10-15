@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>กำหนดการอบรม (Halloween)</title>
+
+<style>
+/* 🌙 Halloween Theme Core */
+:root{
+  --bg:#0b0a12;
+  --panel:#14122a;
+  --ink:#e8e9ff;
+  --orange:#ff7a18;
+  --purple:#6d28d9;
+  --line:#2c2752;
+  --shadow:0 8px 20px rgba(0,0,0,.45);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:"Noto Sans Thai", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 600px at 0% -10%, rgba(109,40,217,.25), transparent),
+    radial-gradient(1000px 500px at 100% 10%, rgba(255,122,24,.08), transparent),
+    var(--bg);
+  line-height:1.6;
+}
+
+/* Header & Navigation */
+header{
+  background:#0f0e1dcc;
+  border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+header h1{
+  margin:0; padding:1rem 0;
+  text-align:center; font-weight:800;
+  color:#ffb347;
+  text-shadow:0 0 10px rgba(255,122,24,.5);
+}
+nav{
+  background:#0f0e1d;
+  border-bottom:1px solid var(--line);
+}
+nav ul{
+  display:flex; justify-content:center; flex-wrap:wrap;
+  gap:.6rem; margin:0; padding:.6rem; list-style:none;
+}
+nav a{
+  text-decoration:none;
+  color:#cfd3ff;
+  border:1px solid var(--line);
+  padding:.5rem 1rem;
+  border-radius:999px;
+  font-weight:700;
+  transition:all .2s;
+}
+nav a:hover{
+  border-color:var(--orange);
+  color:#fff;
+  box-shadow:0 0 10px rgba(255,122,24,.4);
+}
+nav a[href="schedule.html"]{
+  background:linear-gradient(180deg,var(--purple),#4c1d95);
+  color:#fff;
+  box-shadow:0 0 10px rgba(109,40,217,.4);
+}
+
+/* 🎃 Main Content */
+main{
+  padding:2rem 0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+.table-container{
+  width:min(950px,95%);
+  background:linear-gradient(180deg,#151430,#0f0e22);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:1.5rem;
+  position:relative;
+}
+
+/* 🎃 Pumpkin Badge */
+.pumpkin{
+  position:absolute;
+  top:-20px; right:-20px;
+  width:65px; height:65px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #ffd7b0, #ff7a18 55%, #b24a00 100%);
+  box-shadow:0 6px 18px rgba(0,0,0,.35), inset 0 -6px 10px rgba(0,0,0,.25);
+  border:2px solid #7a2f00;
+}
+.pumpkin::before{
+  content:""; position:absolute; top:-10px; left:26px;
+  width:10px; height:14px; background:#2f6a21; border-radius:3px;
+}
+.pumpkin::after{
+  content:"🎃"; position:absolute; inset:0; display:grid; place-items:center;
+  font-size:28px; filter:drop-shadow(0 1px 2px #0006);
+}
+
+/* Table Design */
+table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:var(--radius);
+}
+caption{
+  caption-side:top;
+  padding-bottom:1rem;
+  font-size:1.3rem;
+  font-weight:800;
+  color:var(--orange);
+  text-shadow:0 0 6px rgba(255,122,24,.5);
+}
+thead{
+  background:linear-gradient(90deg,#4c1d95,#6d28d9);
+  color:#fff;
+}
+th,td{
+  padding:1rem;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  text-align:left;
+}
+tbody tr:nth-child(odd){background:#181530;}
+tbody tr:nth-child(even){background:#13112a;}
+tbody tr:hover{
+  background:#1c1735;
+  transition:.3s;
+}
+th{font-weight:800; text-transform:uppercase; letter-spacing:.5px;}
+td{color:#e9e8ff;}
+
+/* Footer */
+footer{
+  border-top:1px solid var(--line);
+  background:#0f0e1d;
+  color:#c0c2dd;
+  text-align:center;
+  padding:1rem;
+  margin-top:2rem;
+}
+
+@media (max-width: 750px){
+  table, thead, tbody, th, td, tr{
+    display:block;
+  }
+  thead{display:none;}
+  tr{margin-bottom:1.2rem; border:1px solid #2a2655; border-radius:12px; padding:.8rem;}
+  td{
+    border:none;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:.4rem .8rem;
+  }
+  td::before{
+    content:attr(data-label);
+    font-weight:700; color:#ffb347;
+  }
+}
+</style>
+</head>
+<body>
+<header><h1>กำหนดการอบรม Generative AI</h1></header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">หน้าหลัก</a></li>
+    <li><a href="schedule.html" aria-current="page">กำหนดการ</a></li>
+    <li><a href="registration.html">ลงทะเบียน</a></li>
+    <li><a href="payment.html">แจ้งชำระเงิน</a></li>
+    <li><a href="contact.html">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="table-container">
+    <div class="pumpkin" aria-hidden="true"></div>
+    <table class="schedule-table">
+      <caption>ตาราง 🎃 วันพุธที่ 15 มกราคม 2568 🎃</caption>
+      <thead>
+        <tr>
+          <th>เวลา</th>
+          <th>รายละเอียดกิจกรรม</th>
+          <th>วิทยากร</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="เวลา">08:00 - 08:30</td>
+          <td data-label="หัวข้อการอบรม">ลงทะเบียนเข้าร่วมอบรม</td>
+          <td data-label="วิทยากร">-</td>
+        </tr>
+        <tr>
+          <td data-label="เวลา">08:30 - 11:50</td>
+          <td data-label="หัวข้อการอบรม">หลักการพื้นฐานของ Generative AI และการประยุกต์ใช้ AI ในการสอนและวิจัย</td>
+          <td data-label="วิทยากร">(รศ.ดร.วีระ เหมือนสิน)</td>
+        </tr>
+        <tr>
+          <td data-label="เวลา">11:50 - 13:00</td>
+          <td data-label="หัวข้อการอบรม">พักรับประทานอาหารกลางวัน</td>
+          <td data-label="วิทยากร">-</td>
+        </tr>
+        <tr>
+          <td data-label="เวลา">13:00 - 15:30</td>
+          <td data-label="หัวข้อการอบรม">การประยุกต์ใช้ AI ในการเรียนรู้</td>
+          <td data-label="วิทยากร">(รศ.ดร.วีระ เหมือนสิน)</td>
+        </tr>
+        <tr>
+          <td data-label="เวลา">15:30 - 16:00</td>
+          <td data-label="หัวข้อการอบรม">กิจกรรมแลกเปลี่ยนความคิด</td>
+          <td data-label="วิทยากร">(รศ.ดร.วีระ เหมือนสิน)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<footer><p>© 2025 ITEC3378 —  BY  : JOSH</p></footer>
+</body>
+</html>

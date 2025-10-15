@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>แจ้งการชำระเงิน (Halloween)</title>
+
+<style>
+  :root{
+    --bg:#0b0a12; --panel:#131225; --ink:#e8e9ff;
+    --orange:#ff7a18; --purple:#6d28d9; --neon:#39ff14;
+    --line:#26243f; --radius:16px; --shadow:0 12px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(109,40,217,.25), transparent),
+      radial-gradient(1000px 500px at 110% 10%, rgba(57,255,20,.06), transparent),
+      var(--bg);
+    font-family:"Noto Sans Thai", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height:1.7;
+  }
+
+  header{position:sticky; top:0; background:#0f0e1dcc; border-bottom:1px solid var(--line)}
+  header h1{text-align:center; margin:0; padding:1rem 0; font-weight:800}
+
+  nav{background:#0f0e1d; border-bottom:1px solid var(--line)}
+  nav ul{display:flex; justify-content:center; flex-wrap:wrap; gap:.5rem; margin:0; padding:.6rem; list-style:none}
+  nav a{
+    display:inline-block; text-decoration:none; color:#cfd3ff;
+    border:1px solid var(--line); padding:.55rem 1rem; border-radius:999px; font-weight:700;
+  }
+  nav a:hover{border-color:#4b3c88; box-shadow:0 0 0 2px rgba(109,40,217,.3) inset}
+  nav a[href="payment.html"]{background:linear-gradient(180deg,var(--purple),#4c1d95); color:#fff}
+
+  main{padding:2rem 0; display:flex; justify-content:center}
+  form{
+    background:linear-gradient(180deg,#151430,#0f0e22);
+    border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:1.2rem; width:min(720px,90%);
+  }
+  label{display:block; margin:1rem 0; font-weight:700; color:#ecd9ff}
+  input{width:100%; margin-top:.35rem; padding:.9rem; border-radius:12px; border:1px solid #2a2750; background:#0f0e1d; color:#e9e8ff}
+  button{
+    display:inline-block; border:none; border-radius:12px; padding:.9rem 1.1rem;
+    font-weight:800; cursor:pointer; background:linear-gradient(180deg,#ff7a18,#d44e00);
+    color:#1a0f08; box-shadow:0 0 20px rgba(255,122,24,.4); transition:.2s;
+  }
+  button:hover{transform:translateY(-2px); box-shadow:0 0 25px rgba(255,122,24,.7)}
+  button:disabled{opacity:.7; cursor:default}
+
+  footer{border-top:1px solid var(--line); background:#0f0e1d; color:#c0c2dd; text-align:center; padding:1rem; margin-top:2rem}
+</style>
+</head>
+
+<body>
+<header><h1>แจ้งการชำระเงิน</h1></header>
+<nav>
+  <ul>
+    <li><a href="index.html">หน้าหลัก</a></li>
+    <li><a href="schedule.html">กำหนดการ</a></li>
+    <li><a href="registration.html">ลงทะเบียน</a></li>
+    <li><a href="payment.html" aria-current="page">แจ้งชำระเงิน</a></li>
+    <li><a href="contact.html">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+<main>
+  <form onsubmit="return false;">
+    <label>ยอดเงินที่โอน (บาท)
+      <input type="number" id="amount" min="0" step="0.01" required>
+    </label>
+    <label>วัน/เวลาที่โอน
+      <input type="datetime-local" id="dt" required>
+    </label>
+    <label>แนบสลิป
+      <input type="file" id="slip" accept="image/*,application/pdf" required>
+    </label>
+    <button type="button" id="payBtn" onclick="checkPayment()">ยืนยันการแจ้งชำระเงิน</button>
+  </form>
+</main>
+
+<script>
+function checkPayment() {
+  const amount = document.getElementById('amount').value;
+  const btn = document.getElementById('payBtn');
+  if (amount) {
+    alert("🎃 แจ้งชำระเงินสำเร็จ! เจ้าหน้าที่จะตรวจสอบภายใน 24 ชม.");
+    btn.textContent = "แจ้งชำระแล้ว";
+    btn.disabled = true;
+    btn.style.background = "linear-gradient(180deg,#28a745,#1f8a2b)";
+    btn.style.boxShadow = "0 0 20px rgba(57,255,20,.5)";
+  } else {
+    alert("กรุณาระบุยอดเงินที่โอนก่อนนะครับ 👻");
+  }
+}
+</script>
+
+<footer><p>© 2025 ITEC3378 — BY  : JOSH</p></footer>
+</body>
+</html>
